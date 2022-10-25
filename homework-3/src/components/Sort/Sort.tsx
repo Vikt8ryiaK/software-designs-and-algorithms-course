@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { useState, FC } from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -7,23 +7,26 @@ import FormLabel from '@mui/material/FormLabel';
 
 import styles from './Sort.module.scss';
 
-interface SortProps {
-  store?: {};
-  updateStore?: (val) => void;
-}
+// interface SortProps {
+//   store?: {};
+//   updateStore?: (val) => void;
+// }
 
 // OR
 
-//interface SortProps {
-//  selected?: {};
-//  updateSelected?: (val) => void;
-//}
+interface SortProps {
+  selected?: {};
+  updateSelected?: (val) => void;
+}
 
 // OR store can be global
 
-export const Sort: FC<SortProps> = props => {
+export const Sort: FC<SortProps> = ({ updateSelected }) => {
+  const [selectedSort, setSelectedSort] = useState<string[]>([]);
+
   const handleChange = value => {
-    console.log(value); // for debugging
+    setSelectedSort(value);
+    updateSelected(value);
   };
 
   return (
