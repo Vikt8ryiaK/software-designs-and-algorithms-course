@@ -14,7 +14,7 @@ import styles from './Search.module.scss';
 
 interface SearchProps {
   selected?: {};
-  updateSelected?: (val) => void;
+  updateSelected?: (val: string) => void;
 }
 
 // OR store can be global
@@ -22,7 +22,7 @@ interface SearchProps {
 export const Search: FC<SearchProps> = ({ updateSelected }) => {
   const [searchedValue, setSearchedValue] = useState('');
 
-  const onChange = value => {
+  const onChange = (value: string) => {
     setSearchedValue(value);
     updateSelected(value);
   };

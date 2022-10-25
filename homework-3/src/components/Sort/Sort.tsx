@@ -16,16 +16,13 @@ import styles from './Sort.module.scss';
 
 interface SortProps {
   selected?: {};
-  updateSelected?: (val) => void;
+  updateSelected?: (val: string) => void;
 }
 
 // OR store can be global
 
 export const Sort: FC<SortProps> = ({ updateSelected }) => {
-  const [selectedSort, setSelectedSort] = useState<string[]>([]);
-
-  const handleChange = value => {
-    setSelectedSort(value);
+  const handleChange = (value: string) => {
     updateSelected(value);
   };
 

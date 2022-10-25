@@ -12,7 +12,7 @@ import styles from './Filters.module.scss';
 
 interface FiltersProps {
   selected?: {};
-  updateSelected?: (val) => void;
+  updateSelected?: (val: string[]) => void;
 }
 
 // OR store can be global
@@ -26,13 +26,13 @@ const OPTIONS = [
   },
 ];
 
-export const Filters: FC<FiltersProps> = ({ selected, updateSelected }) => {
+export const Filters: FC<FiltersProps> = ({ updateSelected }) => {
   const [selectedFilter, setSelectedFilter] = useState<string[]>([]);
 
   const onChange = ({ title }) => {
     console.log(title); // for debugging
 
-    let updatedFilters;
+    let updatedFilters: string[];
 
     if (selectedFilter.find(filter => filter === title)) {
       updatedFilters = selectedFilter.filter(filter => filter !== title);
