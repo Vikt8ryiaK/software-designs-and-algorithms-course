@@ -1,20 +1,20 @@
+import Shipper from "./Shipper";
 import { IShipmentData } from "./mockData";
 
 class Shipment {
     static shipmentID = 0;
-    private shipmentWeightRate = 0.39;
 
-    constructor() {}
+    constructor(private shipper: Shipper) {}
     
     private getShipmentID(id: number): number {
-        return Shipment.shipmentID += 1
+        return id === 0 ? new Date().getTime() : id;
     }
 
     public ship(data: IShipmentData): string {
         const shipmentID = this.getShipmentID(data.shipmentID);
         const adressFrom = `${data.fromAddress} ${data.fromZipCode}`;
         const addressTo = `${data.toAddress} ${data.toZipCode}`;
-        const shipmentCost = data.weight * this.shipmentWeightRate;
+        const shipmentCost = this.shipper.getCost(data.weight);
         return `shipment ID: ${shipmentID}; sent from: ${adressFrom}; sent to: ${addressTo}; cost: ${shipmentCost.toFixed(2)}$`;
     }
 }

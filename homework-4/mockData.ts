@@ -8,6 +8,7 @@ export interface IShipmentData {
 }
 
 const fromZipCode = '94123';
+const fromZipCode2 = '54123';
 
 const fromStreet = 'Lombard';
 const fromCity = 'San Francisco';
@@ -18,11 +19,22 @@ const toCity = 'Virginia Beach';
 const toState = 'Virginia';
 const toZipCode = '23451';
 
+const addressInfo = {
+    fromAddress: `${fromStreet}, ${fromCity}, ${fromState}`,
+    toAddress: `${toStreet}, ${toCity}, ${toState}`,
+    toZipCode: toZipCode,
+}
+
 export const shipmentData: IShipmentData = {
     shipmentID: 0,
     weight: 12,
-    fromAddress: `${fromStreet}, ${fromCity}, ${fromState}`,
     fromZipCode: fromZipCode,
-    toAddress: `${toStreet}, ${toCity}, ${toState}`,
-    toZipCode: toZipCode,
+    ...addressInfo
+}
+
+export const shipmentData2: IShipmentData = {
+    shipmentID: 1668456826002,
+    weight: 12,
+    fromZipCode: fromZipCode2,
+    ...addressInfo
 }
