@@ -1,3 +1,5 @@
+import Shipment from "./Shipment";
+
 export default interface IShipper {
-    getCost: (weight: number) => number;
+    getCost: (weight: number, shipment: Shipment) => number;
 }

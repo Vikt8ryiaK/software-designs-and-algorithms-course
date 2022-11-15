@@ -1,6 +1,7 @@
 import AirEastShipper from "./AirEastShipper";
 import ChicagoSprintShipper from "./ChicagoSprintShipper";
 import PacificParcelShipper from "./PacificParcelShipper";
+import Shipment from "./Shipment";
 
 class Shipper {
     shipper: AirEastShipper | ChicagoSprintShipper | PacificParcelShipper = new AirEastShipper();
@@ -20,8 +21,8 @@ class Shipper {
         }
     }
 
-    public getCost(weight: number) {
-        return this.shipper.getCost(weight);
+    public getCost(weight: number, shipment: Shipment) {
+        return this.shipper.getCost(weight, shipment);
     }
 }
 

@@ -1,6 +1,7 @@
 export interface IShipmentData {
     shipmentID: number;
     weight: number;
+    weight2: number;
     fromAddress: string;
     fromZipCode: string;
     toAddress: string;
@@ -28,6 +29,7 @@ const addressInfo = {
 export const shipmentData: IShipmentData = {
     shipmentID: 0,
     weight: 12,
+    weight2: 45,
     fromZipCode: fromZipCode,
     ...addressInfo
 }
@@ -35,6 +37,7 @@ export const shipmentData: IShipmentData = {
 export const shipmentData2: IShipmentData = {
     shipmentID: 1668456826002,
     weight: 12,
+    weight2: 170,
     fromZipCode: fromZipCode2,
     ...addressInfo
 }

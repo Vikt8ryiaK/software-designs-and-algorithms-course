@@ -1,7 +1,7 @@
 import Shipper from "./Shipper";
 import { IShipmentData } from "./mockData";
 
-class Shipment {
+abstract class Shipment {
     static shipmentID = 0;
 
     constructor(private shipper: Shipper) {}
@@ -14,7 +14,7 @@ class Shipment {
         const shipmentID = this.getShipmentID(data.shipmentID);
         const adressFrom = `${data.fromAddress} ${data.fromZipCode}`;
         const addressTo = `${data.toAddress} ${data.toZipCode}`;
-        const shipmentCost = this.shipper.getCost(data.weight);
+        const shipmentCost = this.shipper.getCost(data.weight, this);
         return `shipment ID: ${shipmentID}; sent from: ${adressFrom}; sent to: ${addressTo}; cost: ${shipmentCost.toFixed(2)}$`;
     }
 }

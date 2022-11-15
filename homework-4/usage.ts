@@ -1,14 +1,11 @@
-import Shipper from "./Shipper";
-import Shipment from "./Shipment";
 import Client from "./Client";
 
 import { shipmentData, shipmentData2 } from "./mockData";
+import ShipmentFactory from "./ShipmentFactory";
 
-const pacificParcelShipper = new Shipper(shipmentData.fromZipCode);
-const chicagoSprintShipper = new Shipper(shipmentData2.fromZipCode);
-
-const shipment = new Shipment(pacificParcelShipper);
-const shipment2 = new Shipment(chicagoSprintShipper);
+const shipmentFactory = new ShipmentFactory();
+const shipment = shipmentFactory.getShipment(shipmentData);
+const shipment2 = shipmentFactory.getShipment(shipmentData2);
 
 new Client(shipment, shipmentData);
 new Client(shipment2, shipmentData2);
