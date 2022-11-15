@@ -3,6 +3,7 @@ import ChicagoSprintShipper from "./ChicagoSprintShipper";
 import PacificParcelShipper from "./PacificParcelShipper";
 import Shipment from "./Shipment";
 
+
 class Shipper {
     shipper: AirEastShipper | ChicagoSprintShipper | PacificParcelShipper = new AirEastShipper();
 

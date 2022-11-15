@@ -6,6 +6,9 @@ export interface IShipmentData {
     fromZipCode: string;
     toAddress: string;
     toZipCode: string;
+    fragile: boolean;
+    doNotLeave: boolean;
+    returnReceiptRequested: boolean;
 }
 
 const fromZipCode = '94123';
@@ -27,17 +30,23 @@ const addressInfo = {
 }
 
 export const shipmentData: IShipmentData = {
+    ...addressInfo,
     shipmentID: 0,
     weight: 12,
     weight2: 45,
     fromZipCode: fromZipCode,
-    ...addressInfo
+    fragile: false,
+    doNotLeave: true,
+    returnReceiptRequested: false,
 }
 
 export const shipmentData2: IShipmentData = {
+    ...addressInfo,
     shipmentID: 1668456826002,
     weight: 12,
     weight2: 170,
     fromZipCode: fromZipCode2,
-    ...addressInfo
+    fragile: true,
+    doNotLeave: true,
+    returnReceiptRequested: true,
 }

@@ -10,7 +10,7 @@ class Client {
     }
 
     private displayInfo(value: string) {
-        console.log(value);
+        console.log(`${value}\n`);
     }
 }
 

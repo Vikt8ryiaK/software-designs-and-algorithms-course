@@ -1,4 +1,5 @@
 import Shipper from "./Shipper";
+import codes from "./codesDecorator";
 import { IShipmentData } from "./mockData";
 
 abstract class Shipment {
@@ -10,12 +11,16 @@ abstract class Shipment {
         return id === 0 ? new Date().getTime() : id;
     }
 
+    @codes
     public ship(data: IShipmentData): string {
         const shipmentID = this.getShipmentID(data.shipmentID);
         const adressFrom = `${data.fromAddress} ${data.fromZipCode}`;
         const addressTo = `${data.toAddress} ${data.toZipCode}`;
         const shipmentCost = this.shipper.getCost(data.weight, this);
-        return `shipment ID: ${shipmentID}; sent from: ${adressFrom}; sent to: ${addressTo}; cost: ${shipmentCost.toFixed(2)}$`;
+
+        const info = `Shipment with the ID ${shipmentID} will be picked up from ${adressFrom} and shipped to ${addressTo}`;
+        const cost = `Cost = ${shipmentCost.toFixed(2)}`;
+        return `${info}\n${cost}`;
     }
 }
 
