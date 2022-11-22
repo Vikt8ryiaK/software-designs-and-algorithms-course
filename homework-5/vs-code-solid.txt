@@ -1,0 +1,94 @@
+project https://github.com/microsoft/vscode
+
+
+—— Single Responsibility Principle —— 
+Good examples:
+src/vs/editor/common/viewModel/viewContext.ts
+export class ViewContext
+12-37
+
+src/vs/platform/profiling/electron-main/windowProfiling.ts
+export class WindowProfiler
+12-46
+
+Bad examples:
+src/vs/platform/extensionManagement/common/extensionStorage.ts
+export class ExtensionStorageService extends Disposable implements IExtensionStorageService
+43-229
+
+src/vs/base/browser/dom.ts
+export class ModifierKeyEmitter extends event.Emitter<IModifierKeyStatus>
+1499-1640
+
+Control instance state (geInstance 1628 - 1634)
+Do different staff related to subscriptions and key status (1515 - 1600)
+
+
+—— Open / Closed Principle —— 
+Good example:
+src/vs/base/browser/ui/toolbar/toolbar.ts
+export class ToggleMenuAction extends Action
+206-232
+
+Bad example:
+src/vs/base/browser/ui/actionbar/actionbar.ts
+export class ActionBar extends Disposable implements IActionRunner
+60 - 586
+Too large to work with and to extend functionality
+
+
+—— Liskov Substitution Principle —— 
+Good example:
+src/vs/base/browser/ui/list/listWidget.ts
+class SelectionTrait<T> extends Trait<T>
+197 - 214
+
+Bad example:
+src/vs/editor/browser/viewParts/lines/viewLines.ts
+public override onConfigurationChanged(e: viewEvents.ViewConfigurationChangedEvent) 
+185-216
+A lot of unpredictable logic inside that can go wrong
+
+
+—— Interface Segregation Principle ——— 
+Good example:
+src/vs/editor/standalone/browser/standaloneCodeEditor.ts
+class StandaloneDiffEditor extends DiffEditorWidget implements IStandaloneDiffEditor
+482
+implements
+src/vs/editor/standalone/browser/standaloneCodeEditor.ts
+interface IStandaloneDiffEditor extends IDiffEditor
+230
+implements
+src/vs/editor/browser/editorBrowser.ts
+interface IDiffEditor extends editorCommon.IEditor
+1096 
+implements
+src/vs/editor/common/editorCommon.ts
+interface IEditor
+206
+
+Bad example:
+src/vs/base/browser/ui/scrollbar/scrollableElementOptions.ts
+export interface ScrollableElementResolvedOptions
+141-165
+Contains a lot of different properties
+
+
+—— Dependency Inversion Principle —— 
+Good example:
+src/vs/base/parts/ipc/common/ipc.electron.ts
+export class Protocol implements IMessagePassingProtocol
+19-34
+constructor(private sender: Sender
+21
+
+Bad example:
+src/vs/editor/common/viewModel/viewModelLines.ts
+class CoordinatesConverter implements ICoordinatesConverter
+1041-1087
+constructor(lines: ViewModelLinesFromProjectedModel)
+1044
+src/vs/editor/common/viewModel/viewModelLines.ts
+export class ViewModelLinesFromProjectedModel implements IViewModelLines
+60
